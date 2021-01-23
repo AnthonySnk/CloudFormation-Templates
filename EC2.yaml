@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+#Template to create EC2 instances
+Parameters:
+
+  customAMI:
+    Description: Enter the code of the AMI you want to Install
+    Type: AWS::EC2::Image::Id
+    Default: ami-0be2609ba883822ec
+
+  SSHKeyName:
+    Description: Select the name of the existing key for SSH access to the EC2 instance.
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: choose-key
+
+Resources:
+  MyInstances:
+    Type:  AWS::EC2::Instance
+    Properties: 
+      ImageId: !Ref customAMI
+      KeyName: !Ref SSHKeyName
+      InstanceType: t2.micro
+      Tags:
+        - Key: Name
+          Value: MyInstance
+      

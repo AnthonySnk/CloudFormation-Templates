@@ -1,0 +1,22 @@
+
+AWSTemplateFormatVersion: 2010-09-09
+#Template to create a bucket all properties are optional
+
+Parameters:
+  EnvironmentName:
+    Description: "We will use this environment name as a tag (Name)."
+    Type: String
+    Default: DEV
+
+  bucketName: 
+    Description: "Enter the bucket Name"
+    Type: String
+
+Resources:
+  Mybucket:
+    Type: "AWS::S3::Bucket"
+    Properties: 
+      BucketName: !Ref bucketName
+      Tags:
+        - Key: Name
+          Value: !Ref EnvironmentName
